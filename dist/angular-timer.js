@@ -1,5 +1,5 @@
 /**
- * angular-timer - v1.3.4 - 2016-05-01 9:52 PM
+ * angular-timer - v1.3.4 - 2016-05-02 3:23 PM
  * https://github.com/siddii/angular-timer
  *
  * Copyright (c) 2016 Siddique Hameed
@@ -16,6 +16,8 @@ var timerModule = angular.module('timer', [])
         endTimeAttr: '=endTime',
         countdownattr: '=countdown',
         finishCallback: '&finishCallback',
+        intervalCallback: '&intervalCallback',
+        intervalsOn : '<',
         autoStart: '&autoStart',
         language: '@?',
         fallback: '@?',
@@ -298,6 +300,10 @@ var timerModule = angular.module('timer', [])
           if ($scope.countdownattr) {
             typeTimer = $scope.countdownattr;
             $scope.millis = $scope.countdown * 1000;
+          }
+
+          if((($scope.millis % $scope.intervalsOn) === 0) && ($scope.millis / 1000 != $scope.countdownattr) && $scope.intervalCallback){
+                $scope.$eval($scope.intervalCallback);
           }
 
           if ($scope.millis < 0) {

@@ -295,9 +295,7 @@ var timerModule = angular.module('timer', [])
             $scope.millis = $scope.countdown * 1000;
           }
 
-          if((($scope.millis % $scope.intervalsOn) === 0)
-            && ($scope.millis / 1000 != $scope.countdownattr)
-            && $scope.intervalCallback){
+          if((($scope.millis % $scope.intervalsOn) === 0) && ($scope.millis / 1000 != $scope.countdownattr) && $scope.intervalCallback){
                 $scope.$eval($scope.intervalCallback);
           }
 
